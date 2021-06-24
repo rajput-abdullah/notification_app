@@ -1,25 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:notification_app/client.dart';
-import 'package:notification_app/otp.dart';
-import 'package:notification_app/signup.dart';
-import 'package:notification_app/subadmin.dart';
-import 'EnterEmail.dart';
-import 'admin.dart';
+import 'package:notification_app/login.dart';
 
-class Login extends StatefulWidget {
+class SignUp extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _SignUpState createState() => _SignUpState();
 }
 
-class _LoginState extends State<Login> {
+class _SignUpState extends State<SignUp> {
+
   final formKeyDropDownSelectCurrencyFormField = new GlobalKey<FormState>();
   String selectedCurrencyId = "";
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   int _verticalGroupValue = 0 ;
   int selectedRadio=0;
 
-  String selectedCurrencyName = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,18 +44,18 @@ class _LoginState extends State<Login> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Container(
-                      padding: new EdgeInsets.only(top: 40),
-                      height:200,
-                      width: 200,
+                      padding: new EdgeInsets.only(top: 5),
+                      height:150,
+                      width: 150,
                       child: Icon(Icons.notifications_active_sharp, size: 150,color: Colors.white,)),
                   SizedBox(
                     height: 15,
                   ),
-                  Container(child: Text('Sign In', textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 25),),),
+                  Container(child: Text('Sign Up', textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 25),),),
                   SizedBox(
                     height: 15,
                   ),
-                  Container(child: Text('Sign In As:', textAlign: TextAlign.left, style: TextStyle(color: Colors.white, fontSize: 15),),),
+                  Container(child: Text('Sign Up As:', textAlign: TextAlign.left, style: TextStyle(color: Colors.white, fontSize: 15),),),
 
                   SizedBox(
                     height: 2,
@@ -116,6 +112,7 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     height: 5,
                   ),
+
                   Container(
                     // padding: new EdgeInsets.only(top: 50),
                     child: Text(
@@ -149,6 +146,7 @@ class _LoginState extends State<Login> {
                               ),
                             )),
                       )),
+
                   Text(
                     ' Password',
                     style: TextStyle(
@@ -181,32 +179,12 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
+
                   SizedBox(
                     height: 50.0,
                     child: MaterialButton(
                       onPressed: () {
-                        if(selectedRadio==0)
-                          {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => Admin()),
-                            );
-                          }
-                        else if(selectedRadio==1)
-                          {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => SubAdmin()),
-                            );
-                          }
-                        else if(selectedRadio==2)
-                          {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => Client()),
-                            );
-                          }
-
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
                       },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
@@ -217,30 +195,18 @@ class _LoginState extends State<Login> {
                       color: Colors.white,
                       elevation: 4.0,
                       child: Text(
-                        'Login',
+                        'Sign Up',
                         style: TextStyle(color: Colors.green[900]),
                       ),
                     ),
                   ),
-                  Container(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>EnterEmail()));
-                      },
-                      child: Text(
-                          "Don't have an account? Signup here",
-                        style: TextStyle(color: Colors.green[300],),textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      padding: EdgeInsets.only(top: 100),
+
+                 Container(
+                   margin: EdgeInsets.only(top: 130),
                       child: Align(
                           alignment: Alignment.bottomCenter,
                           child: Text('Developed by SystemsSol', style: TextStyle(color: Colors.grey[600], fontSize: 15),)),
-                    ),
+
                   ),
 
                 ],
@@ -248,7 +214,7 @@ class _LoginState extends State<Login> {
             ),
           ),
         ),
-          onWillPop:()  async =>  false,
+        onWillPop:()  async =>  true,
       ),
     );
   }
@@ -260,5 +226,3 @@ class _LoginState extends State<Login> {
   }
 
 }
-
-
