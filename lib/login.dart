@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:notification_app/first_page.dart';
+import 'package:notification_app/client.dart';
+import 'package:notification_app/subadmin.dart';
 
-import 'CustomDialogBox.dart';
+import 'admin.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class _LoginState extends State<Login> {
   String selectedCurrencyId = "";
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   int _verticalGroupValue = 0 ;
-  int selectedRadio;
+  int selectedRadio=0;
 
   String selectedCurrencyName = "";
   @override
@@ -25,7 +26,7 @@ class _LoginState extends State<Login> {
         automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: const Color(0xff00363A),
-        centerTitle: false,
+        centerTitle: true,
       ),
       body: WillPopScope(
         child: SafeArea(
@@ -171,10 +172,28 @@ class _LoginState extends State<Login> {
                     height: 50.0,
                     child: MaterialButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => FirstPage()),
-                        );
+                        if(selectedRadio==0)
+                          {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Admin()),
+                            );
+                          }
+                        else if(selectedRadio==1)
+                          {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => SubAdmin()),
+                            );
+                          }
+                        else if(selectedRadio==2)
+                          {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Client()),
+                            );
+                          }
+
                       },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
@@ -193,7 +212,7 @@ class _LoginState extends State<Login> {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      padding: EdgeInsets.only(top: 250),
+                      padding: EdgeInsets.only(top: 180),
                       child: Align(
                           alignment: Alignment.bottomCenter,
                           child: Text('Developed by SystemsSol', style: TextStyle(color: Colors.grey[600], fontSize: 15),)),
@@ -208,11 +227,6 @@ class _LoginState extends State<Login> {
           onWillPop:()  async =>  false,
       ),
     );
-  }
-  void _showSnakBarMsg(String msg) {
-    _scaffoldKey.currentState
-    // ignore: deprecated_member_use
-        .showSnackBar(new SnackBar(content: new Text(msg)));
   }
   setSelectedRadio(int val) {
     setState(() {
