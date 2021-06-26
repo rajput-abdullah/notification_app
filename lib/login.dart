@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:notification_app/activeadmins.dart';
+import 'package:notification_app/activesubadmins.dart';
 import 'package:notification_app/client.dart';
 import 'package:notification_app/otp.dart';
 import 'package:notification_app/signup.dart';
@@ -189,14 +191,14 @@ class _LoginState extends State<Login> {
                           {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Admin()),
+                              MaterialPageRoute(builder: (context) => ActiveAdmins()),
                             );
                           }
                         else if(selectedRadio==1)
                           {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => SubAdmin()),
+                              MaterialPageRoute(builder: (context) => ActiveSubAdmins()),
                             );
                           }
                         else if(selectedRadio==2)
